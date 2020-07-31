@@ -1,0 +1,54 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.github.linyuzai'
+version = '0.1.1'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    //mavenCentral()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://maven.aliyun.com/repository/central" }
+    maven { url "https://maven.aliyun.com/repository/google" }
+    maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+    maven { url "https://maven.aliyun.com/repository/jcenter" }
+    maven { url "https://maven.aliyun.com/repository/spring" }
+    maven { url "https://maven.aliyun.com/repository/spring-plugin" }
+    maven { url "https://maven.aliyun.com/repository/public" }
+    maven { url "https://maven.aliyun.com/repository/releases" }
+    maven { url "https://maven.aliyun.com/repository/snapshots" }
+    maven { url "https://maven.aliyun.com/repository/grails-core" }
+    maven { url "https://maven.aliyun.com/repository/mapr-public" }
+    maven { url "https://maven.aliyun.com/repository/apache-snapshots" }
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url 'https://repo.spring.io/libs-milestone' }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.mybatis:mybatis:3.5.5'
+    implementation 'org.apache.shardingsphere:sharding-jdbc-core:4.1.1'
+    implementation 'com.github.jsqlparser:jsqlparser:3.2'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+jar.enabled = true
+bootJar.enabled = false
+
+test {
+    useJUnitPlatform()
+}
